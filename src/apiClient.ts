@@ -25,7 +25,7 @@ export class ErrorDashboardClient {
 
   /**
    * Initialize the client.
-   * @param {InitializeClient} obj - Object containing clientId and clientSecret.
+   * @param {InitializeClient} obj - Object containing clientId and clientSecret that you get from creating a namespace on our dashboard https://higuard-error-dashboard.shuttleapp.rs.
    */
   private constructor(obj: InitializeClient) {
     this.clientId = obj.clientId;
