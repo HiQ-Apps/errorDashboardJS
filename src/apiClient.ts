@@ -142,7 +142,12 @@ export class ErrorDashboardClient {
         "ErrorDashboardClient not initialized. Call initialize() first."
       );
     }
-    return;
+    return ErrorDashboardClient.instance.sendError(
+      error,
+      message,
+      tags,
+      attachUser
+    );
   }
 
   /**
