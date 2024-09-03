@@ -81,10 +81,10 @@ export class ErrorDashboardClient {
       return;
     }
 
-    let errorStack: string | undefined = error.stack;
-    let userAffected: IdType | undefined = attachUser;
-    let retryAttempts: number = this.configs.getConfig("retryAttempts");
-    let retryDelay: number = this.configs.getConfig("retryDelay");
+    const errorStack: string | undefined = error.stack;
+    const userAffected: IdType | undefined = attachUser;
+    const retryAttempts: number = this.configs.getConfig("retryAttempts");
+    const retryDelay: number = this.configs.getConfig("retryDelay");
 
     const errorRequestBody: CreateErrorRequestSchema = {
       userAffected: userAffected,
@@ -134,7 +134,7 @@ export class ErrorDashboardClient {
   static async sendError(
     error: Error,
     message: string,
-    tags: Tag[] = [],
+    tags: Tag[],
     attachUser?: IdType
   ): Promise<void> {
     if (!ErrorDashboardClient.instance) {
@@ -142,7 +142,12 @@ export class ErrorDashboardClient {
         "ErrorDashboardClient not initialized. Call initialize() first."
       );
     }
-    return;
+    return ErrorDashboardClient.instance.sendError(
+      error,
+      message,
+      tags,
+      attachUser
+    );
   }
 
   /**
